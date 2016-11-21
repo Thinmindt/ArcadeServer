@@ -34,8 +34,6 @@ class Main {
 			request = inputLine;
 
 			byte[] payload = generateSendBack(request);
-			String sentStuff = new String(payload);
-			System.out.println(sentStuff);
 
 			// Send the payload
 			out.write(payload);
