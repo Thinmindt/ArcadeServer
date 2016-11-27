@@ -54,7 +54,7 @@ class Main {
 			String nameAndPassword = snipOffRequestType(request);
 			return checkUsernameAndPassword(nameAndPassword);
 		}
-		return "nothing";
+		return null;
 	}
 
 	static String snipOffRequestType(String request) {
@@ -99,7 +99,10 @@ class Main {
 	}
 
 	static byte[] checkUsernameAndPassword(String usernameAndPassword) {
-		return "one if success, zero if fail"
+		String sendBack = "one if success, zero if fail";
+
+		byte[] sendBackBytes = sendBack.getBytes();
+		return sendBackBytes;
 	}
 }
 
