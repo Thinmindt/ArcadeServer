@@ -36,6 +36,7 @@ class Main {
 			byte[] payload = generateSendBack(request);
 
 			// Send the payload
+			//out.write(payload.length);
 			out.write(payload);
 			System.out.println("Done.");
 
@@ -47,12 +48,21 @@ class Main {
 		if (request.contains("gamesList")) {
 			return sendBackGamesList();
 		} else if (request.contains("download:")) {
+			String gameToDownload = snipOffRequestType(request);
+			return sendBackAPK(gameToDownload);
+		} else if (request.contains("login:")) {
+			String nameAndPassword = snipOffRequestType(request);
+			return checkUsernameAndPassword(nameAndPassword);
+		}
+		return "nothing";
+	}
+
+	static String snipOffRequestType(String request) {
+
 			int start = request.indexOf(":") + 1;
 			int end = request.length();
-			String gameToDownload = request.substring(start, end);
-			return sendBackAPK(gameToDownload);
-		}
-		return null;
+			String requestInfo = request.substring(start, end);
+			return requestInfo;
 	}
 
 	static byte[] sendBackGamesList() {
@@ -86,6 +96,10 @@ class Main {
 		}
 
 		return gameAPKBytes;
+	}
+
+	static byte[] checkUsernameAndPassword(String usernameAndPassword) {
+		return "one if success, zero if fail"
 	}
 }
 
